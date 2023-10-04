@@ -66,5 +66,69 @@ button.spotify {
   color: lightgreen;
   background-color: black;
   padding: 5px 10px;
+}
+button.spotify#first {
   background-color: red;
+}
+
+article {
+  margin-top: 10px;
+  border: 2px solid green;
+  background-color: rgb(0, 250, 120);
+}
+
+aside {
+  margin-top: 10px;
+  border: 2px solid green;
+  background-color: rgb(240, 10, 190);
+}
+
+footer {
+  margin-top: 10px;
+  border: 2px solid green;
+  background-color: #fff;
+}
+
+.elemento1 {
+  font-size: 24px;
+}
+
+.elemento2 {
+  font-weight: 700;
+}
+
+.text-10px {
+  font-size: 10px;
+}
+
+.text-16px {
+  font-size: 16px;
+}
+
+.text-24px {
+  font-size: 24px;
+}
+
+.margin-xs {
+  margin: 10px;
+}
+
+.margin-sm {
+  margin: 12px;
+}
+
+.margin-normal {
+  margin: 16px;
+}
+
+.margin-lg {
+  margin: 24px;
+}
+
+.margin-xl {
+  margin: 32px;
+}
+
+.margin-xxl {
+  margin: 48px;
 }/*# sourceMappingURL=app.css.map */

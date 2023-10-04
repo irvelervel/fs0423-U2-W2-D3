@@ -136,8 +136,9 @@ p.main-par {
 // - colori (red, blue, #ffcc00, rgb(0, 255, 0), rgba(0, 255, 0, 0.5))
 // - booleani (true, false)
 // - null
-// - liste di valori (1px solid black, 5px 5px 10px 10px)
-// - mappe di coppie chiave/valore
+// - valore combinati per proprietà "shortcut" (1px solid black, 5px 5px 10px 10px)
+// - liste di valori (10px, 16px, 24px) --> un po' come gli array in JS
+// - mappe di coppie chiave/valore --> un po' come gli oggetti in JS
 
 // es.
 $main-margin: 35px; // d'ora in poi posso riutilizzare questa quantità semplicemente utilizzando il suo nome $main-margin
@@ -160,14 +161,14 @@ aside {
   border-top: $div-border-standard;
 }
 
-$sizes-map: (
-  xs: 10px,
-  sm: 12px,
-  normal: 16px,
-  lg: 24px,
-  xl: 32px,
-  xxl: 48px,
-);
+// $sizes-map: (
+//   xs: 10px,
+//   sm: 12px,
+//   normal: 16px,
+//   lg: 24px,
+//   xl: 32px,
+//   xxl: 48px,
+// );
 
 // SASS sa utilizzare anche operatori logici, di comparazione, numerici
 // ==, !=, >, <, >=, <=
@@ -188,5 +189,86 @@ button.spotify {
   @include buttonStyles;
   // mi sono appena portato le tre regole sopra dentro questo selettore
   // ora magari sovrascrivo il colore di sfondo, se mi serve
-  background-color: red;
+  // anche solo su un particolare elemento
+  &#first {
+    background-color: red;
+  }
 }
+
+// altro utilizzo dei mixin
+// è possibile personalizzare un mixin in modo da diversificare il suo risultato
+// ad ogni utilizzo
+
+@mixin customStyles($myBackground: #fff) {
+  margin-top: 10px;
+  border: 2px solid green;
+  background-color: $myBackground;
+}
+
+article {
+  @include customStyles(rgb(0, 250, 120));
+}
+
+aside {
+  @include customStyles(rgb(240, 10, 190));
+}
+
+footer {
+  @include customStyles();
+  // margin-top: 10px;
+  // border: 2px solid green;
+  // background-color: ??? si becca il valore di default, #fff
+}
+
+// 6) INTERPOLAZIONE
+
+@mixin fontInterpolation($property, $value) {
+  // questo mixin applicherà delle regole su una proprietà dinamica relativa al font
+  font-#{$property}: $value;
+  // fonde una stringa con una variabile, in JS lo faremmo così: `font-${property}` oppure "font-" + property
+}
+
+.elemento1 {
+  @include fontInterpolation('size', 24px);
+  // mi sono appena portato dentro una proprietà "font-size: 24px"
+}
+
+.elemento2 {
+  @include fontInterpolation('weight', 700);
+}
+
+// 7) CICLI
+// è possibile in SASS utilizzare dei cicli per automatizzare la generazione di STILI ma anche di CLASSI
+$my-sizes: 10px, 16px, 24px;
+
+// un ciclo in SASS si definisce con la direttiva @each
+@each $individual-size in $my-sizes {
+  // questo ciclo ora scorre gli elementi di my-sizes, uno alla volta
+  // indivisual size vale 10px al primo giro, 16px al secondo e 24px al terzo
+  // qui dentro ora io GENERO CLASSI CSS
+  .text-#{$individual-size} {
+    font-size: $individual-size;
+  }
+}
+
+// ho appena generato 3 classi: .text-10px, .text-16px, .text-24px ognuna applicante un diverso font-size
+
+// boss finale: ciclo una mappa di coppie chiave/valore
+$sizes-map: (
+  xs: 10px,
+  sm: 12px,
+  normal: 16px,
+  lg: 24px,
+  xl: 32px,
+  xxl: 48px,
+);
+
+@each $breakpoint, $value in $sizes-map {
+  .margin-#{$breakpoint} {
+    margin: $value;
+  }
+}
+
+// 8) IF/ELSE
+
+// 9) PARTIALS
