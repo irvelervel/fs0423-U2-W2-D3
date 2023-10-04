@@ -1,0 +1,1 @@
+{"version":3,"sources":["partials/_reset.scss","style.css","partials/_footer.scss","partials/_variables.scss","partials/_header.scss"],"names":[],"mappings":"AAAA;;EAEE,SAAA;ACCF;;ADEA;;;;;;EAME,aAAA;ACCF;;ACTE;EACE,sBAJiB;ADgBrB;ACXI;EACE,eCNQ;AFmBd;;AGjBA;EACE,gBAHe;EAIf,mBAJe;AHwBjB","file":"style.css"}

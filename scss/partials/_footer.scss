@@ -1,0 +1,10 @@
+$background-regular: blue;
+
+footer {
+  ul {
+    background-color: $background-regular;
+    li {
+      font-size: $my-variable;
+    }
+  }
+}

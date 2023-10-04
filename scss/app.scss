@@ -270,5 +270,34 @@ $sizes-map: (
 }
 
 // 8) IF/ELSE
+// In SASS è possibile utilizzare delle direttive condizionali al fine di prendere delle decisioni
+// relativamente all'esistenza di una variabile, di una comparazione etc.
+@mixin generate-margin($value: null) {
+  .custom-margin {
+    @if $value {
+      margin: $value;
+    } @else {
+      margin: 10px;
+    }
+  }
+}
+
+@mixin add-padding($value: 0) {
+  .custom-padding {
+    @if $value > 16 {
+      padding: #{$value}px;
+    } @else {
+      padding: 8px;
+    }
+  }
+}
+
+// @include add-padding(20); <-- qui viene applicato padding: 20px
+@include add-padding(5); // <-- qui viene applicato padding: 8px
+// @include add-padding(); <-- qui viene applicato padding: 8px
 
 // 9) PARTIALS
+// SASS ci permette di lavorare su singoli, piccoli files che possono occuparsi i specifiche porzioni di stile
+// questo rende il lavoro più modulare e facilmente mantenibile
+
+// passiamo a style.scss
