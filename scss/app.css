@@ -18,4 +18,53 @@ nav ul {
   nav ul {
     flex-direction: row;
   }
+}
+
+nav ul li {
+  font-size: 0.9em;
+}
+nav ul li:nth-of-type(2) {
+  display: none;
+}
+
+.buttons .primary {
+  color: white;
+  background-color: red;
+}
+.buttons .primary:hover {
+  color: black;
+  background-color: azure;
+}
+.buttons .secondary {
+  color: white;
+  background-color: blue;
+}
+.buttons .secondary:hover {
+  color: black;
+  background-color: pink;
+}
+
+p.main-par {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  margin-left: 35px;
+}
+
+aside {
+  margin-left: 35px;
+}
+
+aside {
+  border-top: 2px solid gray;
+}
+
+button.spotify {
+  color: lightgreen;
+  background-color: black;
+  padding: 5px 10px;
+  background-color: red;
 }/*# sourceMappingURL=app.css.map */

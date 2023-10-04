@@ -39,3 +39,154 @@ nav {
     }
   }
 }
+
+// 3) LAVORARE CON LE PSEUDOCLASSI
+
+// .buttons button.primary {
+//   color: white;
+//   background-color: red;
+// }
+
+// .buttons button.primary:hover {
+//   color: black;
+//   background-color: azure;
+// }
+
+nav {
+  ul {
+    li {
+      // va a prendere nav ul li {}
+      font-size: 0.9em;
+      &:nth-of-type(2) {
+        display: none;
+      }
+    }
+  }
+}
+
+// la & è un modo per riutilizzare il selettore raggiunto al fine di usare comodamente e in modo annidato una pseudo classe,
+// uno pseudoelemento (::after e ::before) o raggiungere ulteriori elementi annidati
+
+button {
+  // tutti gli stili per tutti i bottoni
+  &.primary {
+    // button.primary {}
+  }
+  &.secondary {
+    // button.secondary {}
+  }
+}
+
+button {
+  // tutti gli stili per tutti i bottoni
+  .primary {
+    // button .primary {}
+  }
+  .secondary {
+    // button .secondary {}
+  }
+}
+
+.buttons {
+  .primary {
+    // .buttons .primary {}
+    color: white;
+    background-color: red;
+    &:hover {
+      color: black;
+      background-color: azure;
+    }
+  }
+  .secondary {
+    // .buttons .secondary {}
+    color: white;
+    background-color: blue;
+    &:hover {
+      color: black;
+      background-color: pink;
+    }
+  }
+}
+
+// 4) UTILIZZARE UN PREFISSO COMUNE PER PROPRIETÀ SIMILI
+// p.main-par {
+//   font-size: 1.5em;
+//   font-weight: bold;
+//   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+//     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+// }
+
+p.main-par {
+  font: {
+    size: 1.5em;
+    weight: bold;
+    family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+      'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+}
+
+// 5) VARIABILI
+// le variabili in SASS servono per memorizzare dei valori.
+// i valori che salviamo potranno venire riutilizzati nelle regole di stile che scriviamo
+// concettualmente le variabili in SASS sono più simili alle costanti (perchè raramente le ri-assegneremo)
+
+// cosa possiamo salvare in una variabile SASS? quali sono i "tipi" di SASS?
+// - valori numerici (1, 50, 100, 10px, 2.5em, etc.)
+// - stringhe ('hello', "ciao")
+// - colori (red, blue, #ffcc00, rgb(0, 255, 0), rgba(0, 255, 0, 0.5))
+// - booleani (true, false)
+// - null
+// - liste di valori (1px solid black, 5px 5px 10px 10px)
+// - mappe di coppie chiave/valore
+
+// es.
+$main-margin: 35px; // d'ora in poi posso riutilizzare questa quantità semplicemente utilizzando il suo nome $main-margin
+// utile se la andrò a riutilizzare più volte
+
+h1 {
+  margin-left: $main-margin;
+}
+
+aside {
+  margin-left: $main-margin;
+}
+
+$primary-color: rgb(5, 130, 130);
+$secondary-color: rgb(130, 130, 130);
+
+$div-border-standard: 2px solid gray;
+
+aside {
+  border-top: $div-border-standard;
+}
+
+$sizes-map: (
+  xs: 10px,
+  sm: 12px,
+  normal: 16px,
+  lg: 24px,
+  xl: 32px,
+  xxl: 48px,
+);
+
+// SASS sa utilizzare anche operatori logici, di comparazione, numerici
+// ==, !=, >, <, >=, <=
+// + - * /
+
+// 5) MIXINS
+// Un MIXIN è un blocco di regole CSS richiamabile con un singolo selettore
+
+$normal-padding: 5px 10px;
+
+@mixin buttonStyles {
+  color: lightgreen;
+  background-color: black;
+  padding: $normal-padding;
+}
+
+button.spotify {
+  @include buttonStyles;
+  // mi sono appena portato le tre regole sopra dentro questo selettore
+  // ora magari sovrascrivo il colore di sfondo, se mi serve
+  background-color: red;
+}
